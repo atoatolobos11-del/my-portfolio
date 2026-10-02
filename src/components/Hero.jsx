@@ -59,20 +59,23 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(255, 114, 0, 0.3)" }}
               whileTap={{ scale: 0.95 }}
-              className="group px-8 py-3 md:px-10 md:py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group px-8 py-3 md:px-10 md:py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2 cursor-pointer"
             >
               HIRE ME
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </motion.button>
 
-            <motion.button
+            <motion.a
+              href="/JANDEL-LOBOS-CV.pdf"
+              download="JANDEL-LOBOS-CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group px-8 py-3 md:px-10 md:py-4 border-2 border-[#FF7200] text-[#FF7200] hover:bg-[#FF7200] hover:text-white rounded-full font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-2"
+              className="group px-8 py-3 md:px-10 md:py-4 border-2 border-[#FF7200] text-[#FF7200] hover:bg-[#FF7200] hover:text-white rounded-full font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               GET CV
               <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />
-            </motion.button>
+            </motion.a>
           </motion.div>
         </motion.div>
 

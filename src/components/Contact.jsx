@@ -120,7 +120,7 @@ const Contact = () => {
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(255, 114, 0, 0.3)" }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="group w-full md:w-auto px-10 py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2"
+              className="group w-full md:w-auto px-10 py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2 cursor-pointer"
             >
               SEND MESSAGE
               <Send size={20} className="group-hover:translate-x-1 transition-transform" />

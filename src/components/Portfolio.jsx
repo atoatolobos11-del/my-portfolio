@@ -67,7 +67,8 @@ const Portfolio = () => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 py-2 bg-[#FF7200] rounded-full text-white font-semibold flex items-center gap-2 shadow-lg shadow-[#FF7200]/30"
+                  onClick={() => window.open('#', '_blank')}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 py-2 bg-[#FF7200] rounded-full text-white font-semibold flex items-center gap-2 shadow-lg shadow-[#FF7200]/30 cursor-pointer"
                 >
                   VIEW PROJECT
                   <ExternalLink size={16} />

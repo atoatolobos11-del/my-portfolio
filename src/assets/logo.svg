@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" width="320" height="340" role="img" aria-label="Jandel Lobos — UI/UX Designer logo">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF7200"/>
+      <stop offset="1" stop-color="#FF9A3D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circular ring + dark plate -->
+  <circle cx="160" cy="150" r="108" fill="#0D0D0D"/>
+  <circle cx="160" cy="150" r="108" fill="none" stroke="url(#ringGrad)" stroke-width="7"/>
+
+  <!-- Dynamic diagonal slash (behind the letters) -->
+  <line x1="90" y1="208" x2="234" y2="94" stroke="#FF7200" stroke-width="7"
+        stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Letter L (orange) -->
+  <path d="M196 100 V188 H234" fill="none" stroke="#FF7200" stroke-width="23"
+        stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <!-- Letter J (white) -->
+  <path d="M128 100 V166 a25 25 0 0 1 -50 0" fill="none" stroke="#FFFFFF" stroke-width="23"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Tagline -->
+  <text x="160" y="314" text-anchor="middle" fill="#A1A1AA"
+        font-family="Outfit, 'Segoe UI', system-ui, Roboto, Arial, sans-serif"
+        font-size="27" font-weight="700" letter-spacing="7">UI/UX DESIGNER</text>
+</svg>

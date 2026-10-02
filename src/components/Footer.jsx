@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -11,11 +12,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
           {/* Logo */}
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <div className="w-10 h-10 bg-[#FF7200] rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
-            </div>
-            <div className="text-xl font-bold uppercase tracking-wide">PORTFOLIO</div>
+          <div className="flex items-center justify-center md:justify-start">
+            <img
+              src={logo}
+              alt="Jandel Lobos — UI/UX Designer"
+              draggable="false"
+              className="w-[110px] md:w-[130px] h-auto object-contain select-none"
+            />
           </div>
 
           {/* Navigation */}
@@ -51,7 +54,7 @@ const Footer = () => {
 
         <div className="border-t border-[#292929] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[#A1A1AA] text-sm text-center md:text-left">
-            © 2026 JANDEL LOBOS. All rights reserved.
+            © 2026 Jandel Lobos. All rights reserved.
           </p>
           <motion.button
             onClick={scrollToTop}

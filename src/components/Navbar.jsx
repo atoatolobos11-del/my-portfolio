@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -33,24 +34,9 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3"
-          >
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-10 h-10 md:w-12 md:h-12 bg-[#FF7200] rounded-full flex items-center justify-center shadow-lg shadow-[#FF7200]/20"
-            >
-              <span className="text-white font-bold text-lg md:text-xl">P</span>
-            </motion.div>
-            <div className="text-xl md:text-2xl lg:text-3xl font-bold uppercase tracking-wide">
-              PORTFOLIO
-            </div>
-          </motion.div>
+          <Logo />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
@@ -88,7 +74,8 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(255, 114, 0, 0.3)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-2.5 md:py-3 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 hover:shadow-[#FF7200]/30"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-6 md:px-8 py-2.5 md:py-3 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 hover:shadow-[#FF7200]/30 cursor-pointer"
             >
               HIRE ME
             </motion.button>
@@ -128,7 +115,11 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-[#FF7200] rounded-full text-white font-bold uppercase tracking-wide shadow-lg shadow-[#FF7200]/20"
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-8 py-3 bg-[#FF7200] rounded-full text-white font-bold uppercase tracking-wide shadow-lg shadow-[#FF7200]/20 cursor-pointer"
             >
               HIRE ME
             </motion.button>
