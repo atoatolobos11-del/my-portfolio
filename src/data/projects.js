@@ -25,7 +25,7 @@ export const projectsData = [
     description: "Modern website design for a sustainable living brand with clean aesthetics.",
     tags: ["Figma", "Web Design", "Branding"],
     image: "/placeholder.jpg",
-    link: "",
+    link: "https://rootco-services-1r26.vercel.app",
     github: ""
   },
   {
@@ -58,7 +58,7 @@ export const projectsData = [
     description: "Personal portfolio design showcasing modern minimal aesthetics.",
     tags: ["Figma", "UI/UX", "Portfolio"],
     image: "/placeholder.jpg",
-    link: "",
+    link: "https://my-portfolio-jnd5.vercel.app",
     github: ""
   },
   {
