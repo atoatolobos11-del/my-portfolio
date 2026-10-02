@@ -47,7 +47,7 @@ export const projectsData = [
     description: "Full-featured e-commerce platform with modern shopping experience.",
     tags: ["React", "Node.js", "Stripe"],
     image: "/placeholder.jpg",
-    link: "https://homeline-services.vercel.app",
+    link: "https://homeline-services-gvwx.vercel.app",
     github: ""
   },
   {
