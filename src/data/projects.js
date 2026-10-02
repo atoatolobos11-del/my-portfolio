@@ -41,13 +41,13 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: "E-Commerce Platform",
+    title: "Homeline — Eco-Friendly Kitchenware",
     category: "web",
     categoryLabel: "Web Development",
     description: "Full-featured e-commerce platform with modern shopping experience.",
     tags: ["React", "Node.js", "Stripe"],
     image: "/placeholder.jpg",
-    link: "",
+    link: "https://homeline-services.vercel.app",
     github: ""
   },
   {
