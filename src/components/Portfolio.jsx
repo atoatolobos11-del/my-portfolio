@@ -11,6 +11,15 @@ const Portfolio = () => {
     ? projectsData
     : projectsData.filter(project => project.category === activeCategory);
 
+  const openProject = (project) => {
+    const url = project.link || project.github;
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="portfolio" className="py-20 md:py-32 lg:py-48">
       <SectionTitle
@@ -42,7 +51,9 @@ const Portfolio = () => {
         layout
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
       >
-        {filteredProjects.map((project, index) => (
+        {filteredProjects.map((project, index) => {
+          const hasLink = Boolean(project.link || project.github);
+          return (
           <motion.div
             key={project.id}
             layout
@@ -57,8 +68,9 @@ const Portfolio = () => {
               rotateY: -1,
             }}
             whileTap={{ scale: 0.995 }}
+            onClick={() => { if (hasLink) openProject(project); }}
             style={{ transformStyle: "preserve-3d", perspective: 1200 }}
-            className="group border border-[#292929] rounded-[20px] bg-[#1A1A1A] overflow-hidden hover:border-[#FF7200]/50 transition-all duration-500 ease-out"
+            className={`group border border-[#292929] rounded-[20px] bg-[#1A1A1A] overflow-hidden hover:border-[#FF7200]/50 transition-all duration-500 ease-out ${hasLink ? 'cursor-pointer' : ''}`}
           >
             {/* Project Image */}
             <div className="aspect-video bg-gradient-to-br from-[#242528] to-[#1A1A1A] flex items-center justify-center relative overflow-hidden">
@@ -67,10 +79,10 @@ const Portfolio = () => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={(e) => { e.stopPropagation(); openProject(project); }}
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 py-2 bg-[#FF7200] rounded-full text-white font-semibold flex items-center gap-2 shadow-lg shadow-[#FF7200]/30 cursor-pointer"
                 >
-                  VIEW PROJECT
+                  {project.link ? 'VIEW PROJECT' : project.github ? 'VIEW CODE' : 'GET IN TOUCH'}
                   <ExternalLink size={16} />
                 </motion.button>
               </div>
@@ -101,7 +113,8 @@ const Portfolio = () => {
               </div>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </motion.div>
     </section>
   );
