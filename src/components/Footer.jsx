@@ -1,74 +1,76 @@
-import { motion } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
-import logo from '../assets/logo.png';
+import { ArrowUp } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./icons";
+import { navLinks, profile, socials } from "../data/portfolio";
 
-const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+const YEAR = new Date().getFullYear();
+
+export default function Footer() {
 
   return (
-    <footer className="border-t border-[#292929] bg-[#111111] mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
-          {/* Logo */}
-          <div className="flex items-center justify-center md:justify-start">
-            <img
-              src={logo}
-              alt="Jandel Lobos — UI/UX Designer"
-              draggable="false"
-              className="w-[110px] md:w-[130px] h-auto object-contain select-none"
-            />
-          </div>
+    <footer className="border-t border-line bg-panel/60">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
+          <a href="#top" className="flex items-center gap-3" aria-label={`${profile.name} — back to top`}>
+            <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-lg bg-lime font-display text-sm font-bold text-ink">
+              {profile.initials}
+            </span>
+            <span className="font-display text-sm font-bold uppercase tracking-[0.22em] text-cream">
+              {profile.name}
+            </span>
+          </a>
 
-          {/* Navigation */}
-          <nav className="flex flex-wrap justify-center gap-6 md:gap-8">
-            {['HOME', 'SERVICES', 'ABOUT', 'PORTFOLIO', 'CONTACT'].map((link, index) => (
+          <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-7 gap-y-3">
+            {navLinks.map(({ id, label }) => (
               <a
-                key={index}
-                href={`#${link.toLowerCase() === 'home' ? 'home' : link.toLowerCase() === 'about' ? 'about' : link.toLowerCase() === 'portfolio' ? 'portfolio' : link.toLowerCase() === 'contact' ? 'contact' : 'services'}`}
-                className="text-[#A1A1AA] hover:text-[#FF7200] transition-colors font-semibold uppercase text-sm tracking-wide"
+                key={id}
+                href={`#${id}`}
+                className="text-xs font-semibold uppercase tracking-[0.22em] text-muted transition-colors hover:text-lime"
               >
-                {link}
+                {label}
               </a>
             ))}
           </nav>
 
-          {/* Social Icons */}
-          <div className="flex justify-center md:justify-end gap-3">
-            {['GH', 'LI', 'IG'].map((label, index) => (
-              <motion.a
-                key={index}
-                href="#"
-                whileHover={{ scale: 1.1, y: -3 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 border border-[#292929] rounded-full bg-[#1A1A1A] flex items-center justify-center hover:border-[#FF7200]/50 transition-all"
+          <div className="flex items-center gap-3">
+            {socials.github && (
+              <a
+                href={socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-lime/50 hover:text-lime"
               >
-                <span className="text-xs text-[#A1A1AA] hover:text-[#FF7200] transition-colors font-bold">
-                  {label}
-                </span>
-              </motion.a>
-            ))}
+                <GithubIcon size={18} />
+              </a>
+            )}
+            {socials.linkedin && (
+              <a
+                href={socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-lime/50 hover:text-lime"
+              >
+                <LinkedinIcon size={18} />
+              </a>
+            )}
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Back to top"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-lime text-ink transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(198,255,61,0.35)]"
+            >
+              <ArrowUp size={18} />
+            </button>
           </div>
         </div>
 
-        <div className="border-t border-[#292929] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[#A1A1AA] text-sm text-center md:text-left">
-            © 2026 Jandel Lobos. All rights reserved.
+        <div className="mt-10 border-t border-line pt-6 text-center md:text-left">
+          <p className="text-sm text-muted">
+            © {YEAR} {profile.name}. Built with React, Vite & Tailwind CSS.
           </p>
-          <motion.button
-            onClick={scrollToTop}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-3 bg-[#FF7200] rounded-full shadow-lg shadow-[#FF7200]/20 hover:shadow-[#FF7200]/30 transition-all"
-            aria-label="Back to top"
-          >
-            <ArrowUp size={20} />
-          </motion.button>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

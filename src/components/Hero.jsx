@@ -1,137 +1,130 @@
-import { motion } from 'framer-motion';
-import { Download, ArrowRight } from 'lucide-react';
-import profileImage from '../assets/profile.jpg';
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Download, MapPin } from "lucide-react";
+import profileImage from "../assets/profile.jpg";
+import { profile } from "../data/portfolio";
 
-const Hero = () => {
+const ease = [0.21, 0.47, 0.32, 0.98];
+
+export default function Hero() {
+  const reduce = useReducedMotion();
+
+  const fadeUp = (delay) => ({
+    initial: reduce ? false : { opacity: 0, y: 28 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay, ease },
+  });
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 md:pt-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center w-full">
-        {/* Left Side */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 md:space-y-6"
-        >
+    <section id="top" aria-label="Introduction" className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40">
+      {/* Ambient color — decorative only */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-vio/25 blur-[140px]" />
+        <div className="absolute right-[-8rem] top-40 h-80 w-80 rounded-full bg-lime/15 blur-[120px]" />
+        <div className="absolute left-[-10rem] top-72 h-80 w-80 rounded-full bg-azure/20 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-8">
+        <div>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-[#FF7200] font-bold uppercase tracking-[0.2em] text-sm md:text-base"
+            {...fadeUp(0.05)}
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-lime"
           >
-            HELLO, I'M
+            <span aria-hidden="true" className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
+            </span>
+            {profile.seeking}
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="flex items-baseline gap-2 sm:gap-3 md:gap-4 whitespace-nowrap text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight"
+            {...fadeUp(0.15)}
+            className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight text-cream sm:text-6xl md:text-7xl xl:text-8xl"
           >
-            <span className="text-white">JANDEL</span>
-            <span className="text-[#FF7200]">LOBOS</span>
+            Hi, I&rsquo;m
+            <br />
+            <span className="text-lime">{profile.name}.</span>
+            <br />
+            <span className="text-outline">Developer</span>
+            <span aria-hidden="true" className="text-vio">.</span>
           </motion.h1>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight tracking-tight"
-          >
-            Creative UI/UX Designer
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-base md:text-lg lg:text-xl text-[#A1A1AA] max-w-xl mx-auto lg:mx-0 leading-relaxed"
-          >
-            Passionate about creating beautiful and functional digital experiences that solve real problems.
+          <motion.p {...fadeUp(0.25)} className="mt-5 font-display text-lg font-medium text-cream md:text-xl">
+            {profile.title}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(255, 114, 0, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-8 py-3 md:px-10 md:py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2 cursor-pointer"
-            >
-              HIRE ME
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+          <motion.p {...fadeUp(0.3)} className="mt-3 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            {profile.intro}
+          </motion.p>
 
-            <motion.a
-              href="/JANDEL-LOBOS-CV.pdf"
-              download="JANDEL-LOBOS-CV.pdf"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group px-8 py-3 md:px-10 md:py-4 border-2 border-[#FF7200] text-[#FF7200] hover:bg-[#FF7200] hover:text-white rounded-full font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-2 cursor-pointer"
+          <motion.div {...fadeUp(0.4)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href="#projects"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
             >
-              GET CV
-              <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />
-            </motion.a>
+              View My Projects
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </a>
+            <a
+              href={profile.resumePdfPath}
+              download={profile.resumeFileName}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-cream transition-all duration-200 hover:-translate-y-0.5 hover:border-lime/60 hover:text-lime"
+            >
+              <Download size={18} />
+              Download Resume
+            </a>
           </motion.div>
-        </motion.div>
 
-        {/* Right Side - Profile */}
+          <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={16} className="text-lime" />
+              {profile.location}
+            </span>
+            <span aria-hidden="true" className="hidden h-4 w-px bg-line sm:block" />
+            <span>Code · Design · Problem-solving</span>
+          </motion.div>
+        </div>
+
+        {/* Visual composition */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center justify-center lg:justify-end order-first lg:order-last"
+          initial={reduce ? false : { opacity: 0, scale: 0.96, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease }}
+          className="relative mx-auto w-full max-w-sm lg:max-w-none"
         >
-          <div className="relative">
-            {/* Main Profile Circle */}
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 60px rgba(255, 114, 0, 0.25)",
-                  "0 0 80px rgba(255, 114, 0, 0.35)",
-                  "0 0 60px rgba(255, 114, 0, 0.25)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] xl:w-[480px] xl:h-[480px] rounded-full bg-[#FF7200] p-3"
-            >
-              <div className="w-full h-full rounded-full bg-[#1A1A1A] flex items-center justify-center overflow-hidden border-4 border-[#0D0D0D] relative">
-                <img
-                  src={profileImage}
-                  alt="JANDEL LOBOS"
-                  className="w-full h-full object-cover rounded-full"
-                  style={{ objectPosition: 'center 20%', transform: 'scale(1.10)' }}
-                  loading="eager"
-                />
+          <div aria-hidden="true" className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-lime/25 via-vio/25 to-azure/25 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-line bg-panel">
+            <img
+              src={profileImage}
+              alt={`Portrait of ${profile.name}`}
+              className="aspect-[4/5] w-full object-cover"
+              style={{ objectPosition: "center 20%" }}
+              loading="eager"
+              width={640}
+              height={800}
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-5">
+              <div>
+                <p className="font-display text-lg font-bold text-cream">{profile.name}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-lime">Developer & Designer</p>
               </div>
-            </motion.div>
-
-            {/* Experience Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ delay: 1.2, duration: 0.8, type: "spring" }}
-              whileHover={{ scale: 1.15, rotate: 5 }}
-              className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-24 h-24 md:w-32 md:h-32 bg-[#1A1A1A] border-2 border-[#FF7200] rounded-full flex items-center justify-center shadow-lg shadow-[#FF7200]/20"
-            >
-              <span className="text-[#FF7200] font-bold text-lg md:text-2xl text-center leading-tight">
-                5+ <br />
-                <span className="text-sm md:text-base">Yrs</span>
+              <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full bg-lime font-display text-sm font-bold text-ink">
+                {profile.initials}
               </span>
-            </motion.div>
+            </div>
+          </div>
+
+          <div className="absolute -left-3 top-8 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-8">
+            <span className="text-lime">◈</span> React
+          </div>
+          <div className="absolute -right-3 top-1/3 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-right-6">
+            <span className="text-vio">◈</span> UI/UX
+          </div>
+          <div className="absolute -left-3 bottom-16 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-6">
+            <span className="text-azure">◈</span> JavaScript
           </div>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

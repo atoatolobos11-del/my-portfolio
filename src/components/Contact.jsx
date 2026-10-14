@@ -1,135 +1,213 @@
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import SectionTitle from './SectionTitle';
+import { useState } from "react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./icons";
+import { profile, socials } from "../data/portfolio";
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
-const Contact = () => {
+const hasGithub = Boolean(socials.github);
+const hasLinkedin = Boolean(socials.linkedin);
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState(null);
+
+  const update = (field) => (e) => {
+    setForm((f) => ({ ...f, [field]: e.target.value }));
+    setErrors((err) => ({ ...err, [field]: undefined }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const next = {};
+    if (!form.name.trim()) next.name = "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+      next.email = "Please enter a valid email address.";
+    if (form.message.trim().length < 10)
+      next.message = "Please write a message of at least 10 characters.";
+    setErrors(next);
+    if (Object.keys(next).length > 0) {
+      setStatus({ type: "error", text: "Please fix the highlighted fields and try again." });
+      return;
+    }
+    // No backend is connected — compose via the visitor's own email app.
+    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name.trim()}`);
+    const body = encodeURIComponent(`${form.message.trim()}\n\n— ${form.name.trim()} (${form.email.trim()})`);
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setStatus({
+      type: "success",
+      text: "Your email app should now open with the message ready to send. Nothing is sent automatically — no backend is connected yet.",
+    });
+  };
+
+  const inputClass = (field) =>
+    `w-full rounded-xl border bg-panel2 px-5 py-3.5 text-cream placeholder-muted transition-colors focus:outline-none ${
+      errors[field]
+        ? "border-red-400"
+        : "border-line focus:border-lime"
+    }`;
+
   return (
-    <section id="contact" className="py-20 md:py-32 lg:py-48">
-      <SectionTitle
-        title="LET'S WORK TOGETHER"
-        subtitle="Have a project in mind? Let's create something meaningful together."
-      />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-        {/* Left Side - Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
-        >
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 p-4 md:p-6 border border-[#292929] rounded-[16px] bg-[#1A1A1A] hover:border-[#FF7200]/30 transition-colors">
-              <div className="w-12 h-12 bg-[#FF7200]/20 rounded-xl flex items-center justify-center">
-                <Mail size={24} className="text-[#FF7200]" />
-              </div>
-              <div>
-                <p className="text-[#A1A1AA] text-sm">Email</p>
-                <p className="text-white font-semibold text-base md:text-lg">
-                  atoatolobos11@gmail.com
-                </p>
-              </div>
-            </div>
+    <section id="contact" aria-label="Contact" className="scroll-mt-24 py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          index="05"
+          eyebrow="Contact"
+          title={
+            <>
+              Let&rsquo;s <span className="text-lime">talk.</span>
+            </>
+          }
+          description="Have an internship, role, or project in mind? My inbox is open."
+        />
 
-            <div className="flex items-center gap-4 p-4 md:p-6 border border-[#292929] rounded-[16px] bg-[#1A1A1A] hover:border-[#FF7200]/30 transition-colors">
-              <div className="w-12 h-12 bg-[#FF7200]/20 rounded-xl flex items-center justify-center">
-                <Phone size={24} className="text-[#FF7200]" />
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+          <Reveal className="space-y-4">
+            {[
+              { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+              { icon: Phone, label: "Phone", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
+              { icon: MapPin, label: "Location", value: profile.location, href: null },
+            ].map(({ icon: Icon, label, value, href }) => (
+              <div
+                key={label}
+                className="flex items-center gap-4 rounded-2xl border border-line bg-panel p-5 transition-colors hover:border-lime/40"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-lime/15">
+                  <Icon size={22} className="text-lime" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted">{label}</p>
+                  {href ? (
+                    <a href={href} className="block truncate font-display text-lg font-bold text-cream hover:text-lime">
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="font-display text-lg font-bold text-cream">{value}</p>
+                  )}
+                </div>
               </div>
-              <div>
-                <p className="text-[#A1A1AA] text-sm">Phone</p>
-                <p className="text-white font-semibold text-base md:text-lg">
-                  +63 994 910 2189
-                </p>
-              </div>
-            </div>
+            ))}
 
-            <div className="flex items-center gap-4 p-4 md:p-6 border border-[#292929] rounded-[16px] bg-[#1A1A1A] hover:border-[#FF7200]/30 transition-colors">
-              <div className="w-12 h-12 bg-[#FF7200]/20 rounded-xl flex items-center justify-center">
-                <MapPin size={24} className="text-[#FF7200]" />
+            {(hasGithub || hasLinkedin) && (
+              <div className="flex items-center gap-3 pt-2">
+                {hasGithub && (
+                  <a
+                    href={socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub profile"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-panel text-muted transition-all hover:-translate-y-1 hover:border-lime/50 hover:text-lime"
+                  >
+                    <GithubIcon size={20} />
+                  </a>
+                )}
+                {hasLinkedin && (
+                  <a
+                    href={socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn profile"
+                    className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-panel text-muted transition-all hover:-translate-y-1 hover:border-lime/50 hover:text-lime"
+                  >
+                    <LinkedinIcon size={20} />
+                  </a>
+                )}
               </div>
-              <div>
-                <p className="text-[#A1A1AA] text-sm">Location</p>
-                <p className="text-white font-semibold text-base md:text-lg">
-                  Philippines
-                </p>
-              </div>
-            </div>
-          </div>
+            )}
+          </Reveal>
 
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">Follow Me</h3>
-            <div className="flex gap-3">
-              {[
-                { name: 'GitHub', icon: null },
-                { name: 'LinkedIn', icon: null },
-                { name: 'Instagram', icon: null },
-              ].map((item, index) => (
-                <motion.a
-                  key={index}
-                  href="#"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-12 h-12 border border-[#292929] rounded-full bg-[#1A1A1A] flex items-center justify-center hover:border-[#FF7200]/50 hover:bg-[#FF7200]/10 transition-all"
-                >
-                  <span className="text-xs text-[#A1A1AA] hover:text-[#FF7200] transition-colors">
-                    {item.name[0]}
-                  </span>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Right Side - Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="p-6 md:p-8 border border-[#292929] rounded-[20px] bg-[#1A1A1A]"
-        >
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                placeholder="Your Name"
-                required
-                className="w-full px-6 py-4 bg-[#242528] border border-[#292929] rounded-[16px] text-white placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF7200] transition-colors"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                required
-                className="w-full px-6 py-4 bg-[#242528] border border-[#292929] rounded-[16px] text-white placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF7200] transition-colors"
-              />
-            </div>
-            <input
-              type="text"
-              placeholder="Subject"
-              required
-              className="w-full px-6 py-4 bg-[#242528] border border-[#292929] rounded-[16px] text-white placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF7200] transition-colors"
-            />
-            <textarea
-              rows="6"
-              placeholder="Your Message"
-              required
-              className="w-full px-6 py-4 bg-[#242528] border border-[#292929] rounded-[16px] text-white placeholder-[#A1A1AA] focus:outline-none focus:border-[#FF7200] transition-colors resize-none"
-            ></textarea>
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(255, 114, 0, 0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="group w-full md:w-auto px-10 py-4 bg-[#FF7200] hover:bg-[#ff8f33] rounded-full text-white font-bold uppercase tracking-wide transition-all shadow-lg shadow-[#FF7200]/20 flex items-center justify-center gap-2 cursor-pointer"
+          <Reveal delay={0.1}>
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="rounded-2xl border border-line bg-panel p-6 md:p-8"
             >
-              SEND MESSAGE
-              <Send size={20} className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </form>
-        </motion.div>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-cream">
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={update("name")}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "contact-name-error" : undefined}
+                    className={inputClass("name")}
+                  />
+                  {errors.name && (
+                    <p id="contact-name-error" className="mt-1.5 text-sm text-red-400">{errors.name}</p>
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="contact-email" className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-cream">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    value={form.email}
+                    onChange={update("email")}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "contact-email-error" : undefined}
+                    className={inputClass("email")}
+                  />
+                  {errors.email && (
+                    <p id="contact-email-error" className="mt-1.5 text-sm text-red-400">{errors.email}</p>
+                  )}
+                </div>
+              </div>
+              <div className="mt-5">
+                <label htmlFor="contact-message" className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-cream">
+                  Message
+                </label>
+                <textarea
+                  id="contact-message"
+                  rows={5}
+                  placeholder="Tell me about the opportunity…"
+                  value={form.message}
+                  onChange={update("message")}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
+                  className={`${inputClass("message")} resize-y`}
+                />
+                {errors.message && (
+                  <p id="contact-message-error" className="mt-1.5 text-sm text-red-400">{errors.message}</p>
+                )}
+              </div>
+              <button
+                type="submit"
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)] sm:w-auto"
+              >
+                Send Message
+                <Send size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </button>
+              {status && (
+                <p
+                  role={status.type === "error" ? "alert" : "status"}
+                  className={`mt-4 rounded-xl border p-4 text-sm leading-relaxed ${
+                    status.type === "error"
+                      ? "border-red-400/40 bg-red-400/10 text-cream"
+                      : "border-lime/40 bg-lime/[0.07] text-cream"
+                  }`}
+                >
+                  {status.text}
+                </p>
+              )}
+              <p className="mt-4 text-xs leading-relaxed text-muted">
+                This form opens your own email app to send the message — no
+                form backend is connected yet.
+              </p>
+            </form>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}
