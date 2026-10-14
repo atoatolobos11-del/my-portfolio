@@ -99,6 +99,7 @@ export default function Hero() {
               mode="load"
               delay={0.45}
               stagger={0.12}
+              masks={["", "", "-mt-1 sm:-mt-2 md:-mt-3"]}
               lines={[
                 <>Hi, I&rsquo;m</>,
                 <span key="n" className="whitespace-nowrap text-lime text-4xl sm:text-6xl md:text-7xl xl:text-8xl">{profile.name}.</span>,

@@ -14,6 +14,7 @@ export default function SplitLines({
   duration = 0.95,
   mode = "scroll",
   className = "",
+  masks = [],
 }) {
   const reduce = useReducedMotion();
 
@@ -45,7 +46,7 @@ export default function SplitLines({
       }}
     >
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.1em] -mb-[0.1em]">
+        <span key={i} className={`block overflow-hidden pb-[0.1em] -mb-[0.1em] ${masks[i] ?? ""}`}>
           <motion.span
             className="block will-change-transform"
             variants={{
