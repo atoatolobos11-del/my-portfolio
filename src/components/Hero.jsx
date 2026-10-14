@@ -40,8 +40,6 @@ export default function Hero() {
 
   const tiltX = useTransform(sy, [-0.5, 0.5], [4, -4]);
   const tiltY = useTransform(sx, [-0.5, 0.5], [-6, 6]);
-  const orbX = useTransform(sx, [-0.5, 0.5], [-28, 28]);
-  const orbY = useTransform(sy, [-0.5, 0.5], [-20, 20]);
   const glowX = useTransform(sx, [-0.5, 0.5], [-70, 70]);
   const glowY = useTransform(sy, [-0.5, 0.5], [-50, 50]);
 
@@ -66,13 +64,8 @@ export default function Hero() {
       aria-label="Introduction"
       className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40"
     >
-      {/* Ambient color + cursor glow — decorative only */}
+      {/* Cursor glow — decorative only */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <motion.div style={parallaxOn ? { x: orbX, y: orbY } : undefined} className="absolute inset-0">
-          <div className="animate-drift-a absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-vio/25 blur-[140px]" />
-          <div className="animate-drift-b absolute right-[-8rem] top-40 h-80 w-80 rounded-full bg-lime/15 blur-[120px]" />
-          <div className="animate-drift-a absolute left-[-10rem] top-72 h-80 w-80 rounded-full bg-azure/20 blur-[120px]" />
-        </motion.div>
         {parallaxOn && (
           <motion.div
             style={{ x: glowX, y: glowY }}
