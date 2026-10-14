@@ -12,6 +12,7 @@ import { profile } from "../data/portfolio";
 import { EASE } from "../motion/variants";
 import Magnetic from "./Magnetic";
 import SplitLines from "./SplitLines";
+import useResumeReady from "../hooks/useResumeReady";
 
 /**
  * Entrance timeline (all delays relative to mount):
@@ -22,6 +23,7 @@ import SplitLines from "./SplitLines";
 export default function Hero() {
   const reduce = useReducedMotion();
   const sectionRef = useRef(null);
+  const pdfReady = useResumeReady();
   const [fine] = useState(
     () =>
       typeof window !== "undefined" &&
@@ -128,8 +130,9 @@ export default function Hero() {
             </Magnetic>
             <Magnetic strength={0.22}>
               <a
-                href={profile.resumePdfPath}
-                download={profile.resumeFileName}
+                href={pdfReady === false ? "#resume" : profile.resumePdfPath}
+                download={pdfReady === false ? undefined : profile.resumeFileName}
+                title={pdfReady === false ? "Resume coming soon — see details" : "Download my resume (PDF)"}
                 className="group inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-lime/60 hover:text-lime"
               >
                 <Download size={18} className="dart-down" />

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Award, Briefcase, Download, FileText, GraduationCap } from "lucide-react";
 import { certifications, education, experience, profile } from "../data/portfolio";
 import { riseChild, staggerParent } from "../motion/variants";
+import useResumeReady from "../hooks/useResumeReady";
 import Magnetic from "./Magnetic";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -61,22 +61,9 @@ function TimelineItem({ item, type, bare = false }) {
 }
 
 export default function Resume() {
-  const [pdfReady, setPdfReady] = useState(null);
-
-  // Check whether the resume file actually exists before promising a download.
-  useEffect(() => {
-    let cancelled = false;
-    fetch(profile.resumePdfPath, { method: "HEAD" })
-      .then((res) => {
-        if (!cancelled) setPdfReady(res.ok);
-      })
-      .catch(() => {
-        if (!cancelled) setPdfReady(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  // Shared check — shows a setup note instead of a dead button
+  // until public/resume.pdf actually exists.
+  const pdfReady = useResumeReady();
 
   return (
     <section id="resume" aria-label="Resume, education and experience" className="scroll-mt-24 border-y border-line bg-panel/40 py-16 md:py-24">
