@@ -14,7 +14,7 @@ export default function About() {
   const { scrollYProgress } = useScroll(
     reduce ? undefined : { target: imgRef, offset: ["start end", "end start"] }
   );
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
 
   return (
     <section id="about" aria-label="About me" className="scroll-mt-24 py-16 md:py-24">
@@ -38,6 +38,7 @@ export default function About() {
                   src={aboutPortrait}
                   alt="Stylized marble bust portrait artwork"
                   className="aspect-[4/5] w-full object-cover"
+                  style={{ objectPosition: "center 12%" }}
                   loading="lazy"
                   width={1000}
                   height={1058}
@@ -46,7 +47,7 @@ export default function About() {
                 <motion.img
                   src={aboutPortrait}
                   alt="Stylized marble bust portrait artwork"
-                  style={{ y: imgY, scale: 1.16 }}
+                  style={{ y: imgY, scale: 1.1, objectPosition: "center 12%" }}
                   className="aspect-[4/5] w-full object-cover will-change-transform"
                   loading="lazy"
                   width={1000}
