@@ -99,10 +99,10 @@ export default function Hero() {
               mode="load"
               delay={0.45}
               stagger={0.12}
-              masks={["", "", "-mt-1 sm:-mt-2 md:-mt-3"]}
+              masks={["", "", "-mt-3 sm:-mt-4 md:-mt-6"]}
               lines={[
                 <>Hi, I&rsquo;m</>,
-                <span key="n" className="whitespace-nowrap text-lime text-4xl sm:text-6xl md:text-7xl xl:text-8xl">{profile.name}.</span>,
+                <span key="n" className="whitespace-nowrap text-lime text-4xl leading-[0.85] sm:text-6xl md:text-7xl xl:text-8xl">{profile.name}.</span>,
                 <span key="d" className="text-4xl sm:text-5xl md:text-6xl">
                   <span className="text-outline">Developer</span>
                   <span aria-hidden="true" className="text-vio">.</span>
