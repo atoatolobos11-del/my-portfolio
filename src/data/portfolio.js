@@ -147,6 +147,12 @@ export const experience = [
     description:
       "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects.",
   },
+  {
+    id: 2,
+    period: "2024",
+    role: "Student Assistant",
+    org: "CCDI",
+  },
 ];
 
 // Leave empty until you hold the certification — section auto-hides.

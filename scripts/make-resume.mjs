@@ -110,6 +110,7 @@ section("Experience");
 const jobs = [
   ["2026", "IT Intern & Developer — PANDR IT",
     "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects."],
+  ["2024", "Student Assistant — CCDI", ""],
 ];
 for (const [period, role, desc] of jobs) {
   doc.fillColor(MUTED).font("Helvetica-Bold").fontSize(9.5);
@@ -118,9 +119,13 @@ for (const [period, role, desc] of jobs) {
   doc.fillColor(BODY).font("Helvetica-Bold").fontSize(10.5);
   doc.text(role, LM, y, { width: CW });
   y = doc.y + 1;
-  doc.fillColor(BODY).font("Helvetica").fontSize(10);
-  doc.text(desc, LM, y, { width: CW, lineGap: 2 });
-  y = doc.y + 8;
+  if (desc) {
+    doc.fillColor(BODY).font("Helvetica").fontSize(10);
+    doc.text(desc, LM, y, { width: CW, lineGap: 2 });
+    y = doc.y + 8;
+  } else {
+    y += 6;
+  }
 }
 
 doc.end();
