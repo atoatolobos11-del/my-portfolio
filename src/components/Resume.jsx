@@ -54,6 +54,16 @@ function TimelineItem({ item, type, bare = false }) {
       {item.description && (
         <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.description}</p>
       )}
+      {item.details?.length > 0 && (
+        <ul className="mt-2 space-y-1.5">
+          {item.details.map((d) => (
+            <li key={d} className="flex items-start gap-2 text-sm leading-relaxed text-muted">
+              <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-lime/70" />
+              {d}
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
   if (bare) return inner;

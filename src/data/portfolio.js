@@ -141,6 +141,18 @@ export const education = [];
 export const experience = [
   {
     id: 1,
+    period: "February 9 – Present",
+    role: "On-Call Staff",
+    org: "Bicol Speedtech Motor Corporation",
+    details: [
+      "Assisted customers with inquiries and provided courteous customer service.",
+      "Supported daily operations and completed assigned tasks efficiently.",
+      "Coordinated with team members to ensure smooth workflow and timely completion of duties.",
+      "Maintained a clean, organized, and professional work environment.",
+    ],
+  },
+  {
+    id: 2,
     period: "2026",
     role: "IT Intern & Developer",
     org: "PANDR IT",
@@ -148,12 +160,39 @@ export const experience = [
       "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects.",
   },
   {
-    id: 2,
+    id: 3,
     period: "2024",
     role: "Student Assistant",
     org: "CCDI",
     description:
       "Supported school events and programs while handling mixed general duties assigned by the office.",
+  },
+  {
+    id: 4,
+    period: "August – December 2023",
+    role: "Fiberglass Casting",
+    org: "Napay Arts and Crafts Manufacturing",
+    details: [
+      "Assisted in the fabrication and casting of fiberglass products by preparing molds, cutting fiberglass materials, mixing and applying resin, performing lamination, trimming and finishing completed products.",
+    ],
+  },
+  {
+    id: 5,
+    period: "March 27 – April 27, 2023",
+    role: "Work Immersion — Electronics Product Assembly Services",
+    org: "Jun-Go Technological Institute, Inc.",
+    details: [
+      "Completed hands-on training in electronics product assembly by assembling and testing electronic components, performing basic soldering and inspection, using electronic tools and measuring instruments, following quality control procedures and observing workplace safety standards in a production environment.",
+    ],
+  },
+  {
+    id: 6,
+    period: "2021 – Present",
+    role: "Carpentry/Laborer",
+    org: "Kilicao, Daraga, Albay",
+    details: [
+      "Assisted skilled carpenters and construction workers in building, repairing, and maintaining structures; performed material handling, site preparation, tool operation, cleanup, and basic carpentry tasks.",
+    ],
   },
 ];
 

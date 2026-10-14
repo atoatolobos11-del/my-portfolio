@@ -108,12 +108,31 @@ for (const [title, tech, desc] of projects) {
 // ── Experience ───────────────────────────────────────────────
 section("Experience");
 const jobs = [
+  ["February 9 – Present", "On-Call Staff — Bicol Speedtech Motor Corporation", "",
+    [
+      "Assisted customers with inquiries and provided courteous customer service.",
+      "Supported daily operations and completed assigned tasks efficiently.",
+      "Coordinated with team members to ensure smooth workflow and timely completion of duties.",
+      "Maintained a clean, organized, and professional work environment.",
+    ]],
   ["2026", "IT Intern & Developer — PANDR IT",
-    "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects."],
+    "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects.", []],
   ["2024", "Student Assistant — CCDI",
-    "Supported school events and programs while handling mixed general duties assigned by the office."],
+    "Supported school events and programs while handling mixed general duties assigned by the office.", []],
+  ["August – December 2023", "Fiberglass Casting — Napay Arts and Crafts Manufacturing", "",
+    [
+      "Assisted in the fabrication and casting of fiberglass products by preparing molds, cutting fiberglass materials, mixing and applying resin, performing lamination, trimming and finishing completed products.",
+    ]],
+  ["March 27 – April 27, 2023", "Work Immersion — Electronics Product Assembly Services — Jun-Go Technological Institute, Inc.", "",
+    [
+      "Completed hands-on training in electronics product assembly by assembling and testing electronic components, performing basic soldering and inspection, using electronic tools and measuring instruments, following quality control procedures and observing workplace safety standards in a production environment.",
+    ]],
+  ["2021 – Present", "Carpentry/Laborer — Kilicao, Daraga, Albay", "",
+    [
+      "Assisted skilled carpenters and construction workers in building, repairing, and maintaining structures; performed material handling, site preparation, tool operation, cleanup, and basic carpentry tasks.",
+    ]],
 ];
-for (const [period, role, desc] of jobs) {
+for (const [period, role, desc, details] of jobs) {
   doc.fillColor(MUTED).font("Helvetica-Bold").fontSize(9.5);
   doc.text(period, LM, y, { width: CW });
   y = doc.y + 1;
@@ -126,6 +145,14 @@ for (const [period, role, desc] of jobs) {
     y = doc.y + 8;
   } else {
     y += 6;
+  }
+  if (details?.length) {
+    doc.fillColor(BODY).font("Helvetica").fontSize(9.5);
+    for (const d of details) {
+      doc.text(`•   ${d}`, LM + 10, y, { width: CW - 10, lineGap: 3 });
+      y = doc.y + 4;
+    }
+    y += 4;
   }
 }
 
