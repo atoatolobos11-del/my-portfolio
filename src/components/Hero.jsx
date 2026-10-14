@@ -18,9 +18,9 @@ export default function Hero() {
     <section id="top" aria-label="Introduction" className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40">
       {/* Ambient color — decorative only */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-vio/25 blur-[140px]" />
-        <div className="absolute right-[-8rem] top-40 h-80 w-80 rounded-full bg-lime/15 blur-[120px]" />
-        <div className="absolute left-[-10rem] top-72 h-80 w-80 rounded-full bg-azure/20 blur-[120px]" />
+        <div className="animate-drift-a absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-vio/25 blur-[140px]" />
+        <div className="animate-drift-b absolute right-[-8rem] top-40 h-80 w-80 rounded-full bg-lime/15 blur-[120px]" />
+        <div className="animate-drift-a absolute left-[-10rem] top-72 h-80 w-80 rounded-full bg-azure/20 blur-[120px]" />
       </div>
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-8">
@@ -114,13 +114,13 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="absolute -left-3 top-8 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-8">
+          <div className="animate-float-y absolute -left-3 top-8 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-8">
             <span className="text-lime">◈</span> React
           </div>
-          <div className="absolute -right-3 top-1/3 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-right-6">
+          <div className="animate-float-y absolute -right-3 top-1/3 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-right-6" style={{ animationDelay: "-1.6s" }}>
             <span className="text-vio">◈</span> UI/UX
           </div>
-          <div className="absolute -left-3 bottom-16 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-6">
+          <div className="animate-float-y absolute -left-3 bottom-16 rounded-xl border border-line bg-ink/90 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-cream shadow-xl backdrop-blur sm:-left-6" style={{ animationDelay: "-3.2s" }}>
             <span className="text-azure">◈</span> JavaScript
           </div>
         </motion.div>

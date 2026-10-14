@@ -76,6 +76,29 @@ body {
   mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 75%);
 }
 
+/* Ambient motion — all disabled under prefers-reduced-motion below */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(48px, 32px) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-48px, -28px) scale(1.08); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-drift-a { animation: drift-a 14s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 18s ease-in-out infinite; }
+.animate-float-y { animation: float-y 5s ease-in-out infinite; }
+.animate-marquee { animation: marquee-x 30s linear infinite; }
+.marquee-hover:hover .animate-marquee { animation-play-state: paused; }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

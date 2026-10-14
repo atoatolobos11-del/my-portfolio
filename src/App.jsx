@@ -3,6 +3,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
 import Resume from "./components/Resume";
 import Skills from "./components/Skills";
@@ -21,6 +22,7 @@ function App() {
         {/* Blueprint grid backdrop for the top of the page — decorative */}
         <div aria-hidden="true" className="bg-blueprint pointer-events-none absolute inset-x-0 top-0 h-[42rem]" />
         <Hero />
+        <Marquee />
         <About />
         <Skills />
         <Projects />

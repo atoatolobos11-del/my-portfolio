@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navLinks, profile } from "../data/portfolio";
 
@@ -6,6 +7,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -136,6 +138,12 @@ export default function Header() {
           </a>
         </nav>
       )}
+      {/* Scroll progress — decorative, mirrors scroll position */}
+      <motion.div
+        aria-hidden="true"
+        style={{ scaleX: scrollYProgress }}
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-lime"
+      />
     </header>
   );
 }
