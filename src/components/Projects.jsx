@@ -3,12 +3,14 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { projectFilters, projects } from "../data/portfolio";
 import { EASE } from "../motion/variants";
 import ProjectCard from "./ProjectCard";
+import ProjectModal from "./ProjectModal";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 export default function Projects() {
   const reduce = useReducedMotion();
   const [filter, setFilter] = useState("all");
+  const [selected, setSelected] = useState(null);
   const visible =
     filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
@@ -47,7 +49,7 @@ export default function Projects() {
         {reduce ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {visible.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
+              <ProjectCard key={project.id} project={project} index={i} onDetails={() => setSelected({ project, index: i })} />
             ))}
           </div>
         ) : (
@@ -64,13 +66,18 @@ export default function Projects() {
                   transition={{ duration: 0.45, ease: EASE }}
                   className="h-full"
                 >
-                  <ProjectCard project={project} index={i} />
+                  <ProjectCard project={project} index={i} onDetails={() => setSelected({ project, index: i })} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         )}
       </div>
+      <ProjectModal
+        project={selected?.project ?? null}
+        index={selected?.index ?? 0}
+        onClose={() => setSelected(null)}
+      />
     </section>
   );
 }

@@ -8,6 +8,7 @@ import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
 import Resume from "./components/Resume";
 import Skills from "./components/Skills";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       </main>
       <Footer />
       <JoystickTop />
+      <Analytics />
     </div>
   );
 }

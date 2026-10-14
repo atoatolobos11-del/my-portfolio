@@ -25,6 +25,24 @@ Almost everything editable lives in **`src/data/portfolio.js`**:
 | Education / experience (newest first) | `education`, `experience` |
 | Certifications (section auto-hides when empty) | `certifications` |
 | GitHub / LinkedIn (link auto-hides while empty) | `socials` |
+| Contact form endpoint (empty = mailto fallback) | `contactForm` |
+| Per-project `role` / `highlights` for the case-study modal | `projects` |
+
+## Case-study modals
+
+Every project card has a **Details** button opening an accessible dialog
+(Escape/backdrop close, focus management, scroll lock). The modal shows
+confirmed data plus optional `role` and `highlights` fields — add those to
+any project in `src/data/portfolio.js` and the sections appear automatically.
+
+## Share image & SEO
+
+- `public/og-image.png` (1200×630) is referenced by Open Graph / Twitter
+  meta in `index.html`. Regenerate it if you rebrand.
+- `public/robots.txt` + `public/sitemap.xml` use the live Vercel URL —
+  update them if you attach a custom domain.
+- `<Analytics />` (`@vercel/analytics`) is mounted in `src/App.jsx`.
+  Enable **Web Analytics** in the Vercel project dashboard to see traffic.
 
 ## Adding your resume PDF
 
@@ -36,10 +54,15 @@ Almost everything editable lives in **`src/data/portfolio.js`**:
 
 ## Contact form status
 
-No form backend is connected. Submitting the form validates the fields and opens the
-visitor's own email app (`mailto:`) with the message pre-filled. To use a real backend
-later (e.g. Formspree, Web3Forms, or a serverless function), wire it up in
-`src/components/Contact.jsx` → `handleSubmit`.
+The form works in two modes, controlled by `contactForm.endpoint` in
+`src/data/portfolio.js`:
+
+- **Empty (default):** validates the fields and opens the visitor's own
+  email app (`mailto:`) with the message pre-filled. Honest fallback.
+- **With an endpoint:** POSTs name/email/message as JSON and shows
+  sending / success / error states. To enable it, create a free form at
+  [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com)
+  and paste the endpoint URL into `contactForm.endpoint`.
 
 ## Project structure
 

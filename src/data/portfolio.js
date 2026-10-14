@@ -175,6 +175,18 @@ export const socials = {
   linkedin: "",
 };
 
+// Contact form delivery. Leave `endpoint` empty to keep the honest
+// mailto fallback. To receive messages in your inbox directly, create a
+// free form endpoint (https://formspree.io or https://web3forms.com)
+// and paste it here, e.g. "https://formspree.io/f/YOUR_FORM_ID".
+export const contactForm = {
+  endpoint: "",
+};
+
+// Optional per-project case-study fields. Add `role: "..."` and
+// `highlights: ["..."]` to any project in `projects` above — the modal
+// renders those sections only when present. Left empty, nothing invented.
+
 export const siteMeta = {
   title: "Jandel Lobos — Aspiring IT Professional & Developer",
   description:

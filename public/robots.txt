@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://portfolio-gamma-ruddy-yxdb2iwm5g.vercel.app/sitemap.xml

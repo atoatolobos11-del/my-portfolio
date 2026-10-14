@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
-import { profile, socials } from "../data/portfolio";
+import { contactForm, profile, socials } from "../data/portfolio";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
@@ -12,13 +12,15 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
+  const [sending, setSending] = useState(false);
+  const backendOn = Boolean(contactForm.endpoint);
 
   const update = (field) => (e) => {
     setForm((f) => ({ ...f, [field]: e.target.value }));
     setErrors((err) => ({ ...err, [field]: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const next = {};
     if (!form.name.trim()) next.name = "Please enter your name.";
@@ -29,6 +31,30 @@ export default function Contact() {
     setErrors(next);
     if (Object.keys(next).length > 0) {
       setStatus({ type: "error", text: "Please fix the highlighted fields and try again." });
+      return;
+    }
+    // With a backend endpoint configured, deliver directly to the inbox.
+    if (backendOn) {
+      setSending(true);
+      setStatus(null);
+      try {
+        const res = await fetch(contactForm.endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            name: form.name.trim(),
+            email: form.email.trim(),
+            message: form.message.trim(),
+          }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        setForm({ name: "", email: "", message: "" });
+        setStatus({ type: "success", text: "Message sent — thanks for reaching out. I'll get back to you soon." });
+      } catch {
+        setStatus({ type: "error", text: "Couldn't send just now. Please try again, or email me directly instead." });
+      } finally {
+        setSending(false);
+      }
       return;
     }
     // No backend is connected — compose via the visitor's own email app.
@@ -183,9 +209,10 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)] sm:w-auto"
+                disabled={sending}
+                className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)] disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0 sm:w-auto"
               >
-                Send Message
+                {sending ? "Sending…" : "Send Message"}
                 <Send size={18} className="dart-x" />
               </button>
               {status && (
@@ -201,8 +228,9 @@ export default function Contact() {
                 </p>
               )}
               <p className="mt-4 text-xs leading-relaxed text-muted">
-                This form opens your own email app to send the message — no
-                form backend is connected yet.
+                {backendOn
+                  ? "This form sends your message straight to my inbox."
+                  : "This form opens your own email app to send the message — no form backend is connected yet."}
               </p>
             </form>
           </Reveal>

@@ -5,7 +5,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Eye } from "lucide-react";
 import { EASE } from "../motion/variants";
 import { GithubIcon } from "./icons";
 
@@ -20,7 +20,7 @@ const visuals = [
  * staggered tag entrance, hover overlay. Fully static on touch /
  * reduced-motion — links remain plain tappable anchors everywhere.
  */
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index, onDetails }) {
   const reduce = useReducedMotion();
   const ref = useRef(null);
   const [fine] = useState(
@@ -123,9 +123,16 @@ export default function ProjectCard({ project, index }) {
           ))}
         </ul>
 
-        {(project.live || project.source) && (
-          <div className="mt-5 flex flex-wrap gap-2.5 border-t border-line pt-5">
-            {project.live && (
+        <div className="mt-5 flex flex-wrap gap-2.5 border-t border-line pt-5">
+          <button
+            type="button"
+            onClick={onDetails}
+            className="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-lime transition-colors duration-200 hover:bg-lime/20"
+          >
+            <Eye size={14} />
+            Details
+          </button>
+          {project.live && (
               <a
                 href={project.live}
                 target="_blank"
@@ -148,7 +155,6 @@ export default function ProjectCard({ project, index }) {
               </a>
             )}
           </div>
-        )}
       </div>
     </motion.article>
   );
