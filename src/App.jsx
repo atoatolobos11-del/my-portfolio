@@ -3,6 +3,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import JoystickTop from "./components/JoystickTop";
 import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
 import Resume from "./components/Resume";
@@ -37,6 +38,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <JoystickTop />
     </div>
   );
 }
