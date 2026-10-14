@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Compass } from "lucide-react";
-import aboutPortrait from "../assets/about-portrait.png";
+import aboutPortrait from "../assets/about-portrait.jpg";
 import { profile } from "../data/portfolio";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -30,7 +30,7 @@ export default function About() {
         />
 
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-          <Reveal variant="clip" className="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <Reveal variant="clip" className="relative mx-auto w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[300px]">
             <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-vio/30 to-azure/20 blur-2xl" />
             <div ref={imgRef} className="relative overflow-hidden rounded-[1.75rem] border border-line bg-panel">
               {reduce ? (
@@ -39,8 +39,8 @@ export default function About() {
                   alt="Stylized marble bust portrait artwork"
                   className="aspect-[4/5] w-full object-cover"
                   loading="lazy"
-                  width={1024}
-                  height={1280}
+                  width={1000}
+                  height={1058}
                 />
               ) : (
                 <motion.img
@@ -49,8 +49,8 @@ export default function About() {
                   style={{ y: imgY, scale: 1.16 }}
                   className="aspect-[4/5] w-full object-cover will-change-transform"
                   loading="lazy"
-                  width={1024}
-                  height={1280}
+                  width={1000}
+                  height={1058}
                 />
               )}
             </div>
