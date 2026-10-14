@@ -142,26 +142,10 @@ export const experience = [
   {
     id: 1,
     period: "2026",
-    role: "IT Intern",
+    role: "IT Intern & Developer",
     org: "PANDR IT",
     description:
       "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects.",
-  },
-  {
-    id: 2,
-    period: "2025",
-    role: "Freelance UI/UX Designer",
-    org: "Self-Employed",
-    description:
-      "Designed user interfaces and experiences with a focus on usability and aesthetics.",
-  },
-  {
-    id: 3,
-    period: "2024",
-    role: "Frontend Developer",
-    org: "Tech Agency",
-    description:
-      "Developed responsive web applications using modern frontend frameworks and optimized for performance.",
   },
 ];
 

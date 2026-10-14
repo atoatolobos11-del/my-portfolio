@@ -108,12 +108,8 @@ for (const [title, tech, desc] of projects) {
 // ── Experience ───────────────────────────────────────────────
 section("Experience");
 const jobs = [
-  ["2026", "IT Intern — PANDR IT",
+  ["2026", "IT Intern & Developer — PANDR IT",
     "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects."],
-  ["2025", "Freelance UI/UX Designer — Self-Employed",
-    "Designed user interfaces and experiences with a focus on usability and aesthetics."],
-  ["2024", "Frontend Developer — Tech Agency",
-    "Developed responsive web applications using modern frontend frameworks and optimized for performance."],
 ];
 for (const [period, role, desc] of jobs) {
   doc.fillColor(MUTED).font("Helvetica-Bold").fontSize(9.5);
