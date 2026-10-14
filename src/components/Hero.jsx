@@ -99,7 +99,7 @@ export default function Hero() {
               stagger={0.12}
               lines={[
                 <>Hi, I&rsquo;m</>,
-                <span key="n" className="text-lime">{profile.name}.</span>,
+                <span key="n" className="whitespace-nowrap text-lime text-4xl sm:text-6xl md:text-7xl xl:text-8xl">{profile.name}.</span>,
                 <span key="d">
                   <span className="text-outline">Developer</span>
                   <span aria-hidden="true" className="text-vio">.</span>
