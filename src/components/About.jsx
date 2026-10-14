@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Compass } from "lucide-react";
-import profileImage from "../assets/profile.jpg";
+import aboutPortrait from "../assets/about-portrait.png";
 import { profile } from "../data/portfolio";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
@@ -35,23 +35,22 @@ export default function About() {
             <div ref={imgRef} className="relative overflow-hidden rounded-[1.75rem] border border-line bg-panel">
               {reduce ? (
                 <img
-                  src={profileImage}
-                  alt={`Portrait of ${profile.name}`}
+                  src={aboutPortrait}
+                  alt="Stylized marble bust portrait artwork"
                   className="aspect-[4/5] w-full object-cover"
-                  style={{ objectPosition: "center 20%" }}
                   loading="lazy"
-                  width={640}
-                  height={800}
+                  width={1024}
+                  height={1280}
                 />
               ) : (
                 <motion.img
-                  src={profileImage}
-                  alt={`Portrait of ${profile.name}`}
-                  style={{ y: imgY, scale: 1.16, objectPosition: "center 20%" }}
+                  src={aboutPortrait}
+                  alt="Stylized marble bust portrait artwork"
+                  style={{ y: imgY, scale: 1.16 }}
                   className="aspect-[4/5] w-full object-cover will-change-transform"
                   loading="lazy"
-                  width={640}
-                  height={800}
+                  width={1024}
+                  height={1280}
                 />
               )}
             </div>
