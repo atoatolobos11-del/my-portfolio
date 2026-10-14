@@ -158,9 +158,9 @@ export default function Resume() {
                   <a
                     href={profile.resumePdfPath}
                     download={profile.resumeFileName}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-shadow duration-200 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-shadow duration-200 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
                   >
-                    <Download size={18} />
+                    <Download size={18} className="dart-down" />
                     Download Resume
                   </a>
                 </Magnetic>

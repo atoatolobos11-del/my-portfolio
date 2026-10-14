@@ -123,16 +123,16 @@ export default function Hero() {
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-[box-shadow,background-color] duration-200 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
               >
                 View My Projects
-                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight size={18} className="dart-x" />
               </a>
             </Magnetic>
             <Magnetic strength={0.22}>
               <a
                 href={profile.resumePdfPath}
                 download={profile.resumeFileName}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-lime/60 hover:text-lime"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-cream transition-colors duration-200 hover:border-lime/60 hover:text-lime"
               >
-                <Download size={18} />
+                <Download size={18} className="dart-down" />
                 Download Resume
               </a>
             </Magnetic>

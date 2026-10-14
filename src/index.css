@@ -117,6 +117,35 @@ body {
 .animate-beam-b { animation: beam-b 27s ease-in-out infinite; }
 .animate-sheen { animation: sheen-pass 12s ease-in-out infinite; }
 
+/* Rocket arrows: shoot-and-return loops triggered by parent hover,
+   plus an idle bob for the back-to-top arrow. */
+@keyframes dart-x {
+  0% { transform: translateX(0); opacity: 1; }
+  45% { transform: translateX(12px); opacity: 0; }
+  55% { transform: translateX(-12px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes dart-down {
+  0% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(10px); opacity: 0; }
+  55% { transform: translateY(-10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes dart-diag {
+  0% { transform: translate(0, 0); opacity: 1; }
+  45% { transform: translate(8px, -8px); opacity: 0; }
+  55% { transform: translate(-8px, 8px); opacity: 0; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes bob-y {
+  0%, 100% { transform: translateY(2px); }
+  50% { transform: translateY(-3px); }
+}
+.group:hover .dart-x { animation: dart-x 0.9s ease-in-out infinite; }
+.group:hover .dart-down { animation: dart-down 0.9s ease-in-out infinite; }
+.group:hover .dart-diag { animation: dart-diag 0.85s ease-in-out infinite; }
+.arrow-bob { animation: bob-y 2.2s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

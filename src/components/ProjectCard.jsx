@@ -92,7 +92,7 @@ export default function ProjectCard({ project, index }) {
           <div className="absolute inset-0 flex items-center justify-center gap-2 bg-ink/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
             <span className="inline-flex translate-y-2 items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-ink transition-transform duration-300 group-hover:translate-y-0">
               {project.live ? "View Live" : "View Code"}
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={14} className="dart-diag" />
             </span>
           </div>
         )}

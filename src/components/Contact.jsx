@@ -186,7 +186,7 @@ export default function Contact() {
                 className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)] sm:w-auto"
               >
                 Send Message
-                <Send size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+                <Send size={18} className="dart-x" />
               </button>
               {status && (
                 <p
