@@ -99,6 +99,24 @@ body {
 .animate-marquee { animation: marquee-x 30s linear infinite; }
 .marquee-hover:hover .animate-marquee { animation-play-state: paused; }
 
+/* Reflecting-light background: drifting beams + periodic sheen sweep.
+   Transform-only animation; static blur. Faint by design. */
+@keyframes beam-a {
+  0%, 100% { transform: translateX(-20vw) rotate(16deg); }
+  50% { transform: translateX(20vw) rotate(16deg); }
+}
+@keyframes beam-b {
+  0%, 100% { transform: translateX(22vw) rotate(-12deg); }
+  50% { transform: translateX(-22vw) rotate(-12deg); }
+}
+@keyframes sheen-pass {
+  0% { transform: translateX(-160%) skewX(-12deg); }
+  45%, 100% { transform: translateX(280%) skewX(-12deg); }
+}
+.animate-beam-a { animation: beam-a 22s ease-in-out infinite; }
+.animate-beam-b { animation: beam-b 27s ease-in-out infinite; }
+.animate-sheen { animation: sheen-pass 12s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
