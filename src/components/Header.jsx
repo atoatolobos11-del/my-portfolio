@@ -85,8 +85,8 @@ export default function Header() {
 
         <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
           {navLinks.map(({ id, label }) => (
+            <Magnetic key={id} strength={0.3}>
             <a
-              key={id}
               href={`#${id}`}
               aria-current={active === id ? "true" : undefined}
               className={`group relative px-0.5 py-1 text-xs font-semibold uppercase tracking-[0.22em] transition-colors duration-200 ${
@@ -109,6 +109,7 @@ export default function Header() {
                 />
               )}
             </a>
+            </Magnetic>
           ))}
           <Magnetic strength={0.25}>
             <a
