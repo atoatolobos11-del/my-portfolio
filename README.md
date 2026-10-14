@@ -27,6 +27,9 @@ Almost everything editable lives in **`src/data/portfolio.js`**:
 | GitHub / LinkedIn (link auto-hides while empty) | `socials` |
 | Contact form endpoint (empty = mailto fallback) | `contactForm` |
 | Per-project `role` / `highlights` for the case-study modal | `projects` |
+| WhatsApp number, digits only | `profile.whatsapp` |
+| FAQ entries (edit answers to match reality) | `faqs` |
+| Real testimonials only (section hides while empty) | `testimonials` |
 
 ## Case-study modals
 

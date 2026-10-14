@@ -18,6 +18,8 @@ export const profile = {
   location: "Philippines",
   email: "atoatolobos11@gmail.com",
   phone: "+63 994 910 2189",
+  // WhatsApp in international format, digits only (no +, spaces, or dashes).
+  whatsapp: "639949102189",
   // Drop your resume file at:  public/resume.pdf  (see README).
   resumePdfPath: "/resume.pdf",
   resumeFileName: "Jandel-Lobos-Resume.pdf",
@@ -28,6 +30,7 @@ export const navLinks = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "resume", label: "Resume" },
+  { id: "faq", label: "FAQ" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -207,6 +210,37 @@ export const experience = [
 
 // Leave empty until you hold the certification — section auto-hides.
 export const certifications = [];
+
+// Real testimonials only — the section hides itself while empty.
+// Format: { quote: "Their exact words", name: "Full Name", role: "Role, Company" }
+// Example (keep commented until you have a real one):
+// export const testimonials = [
+//   { quote: "…", name: "…", role: "…" },
+// ];
+export const testimonials = [];
+
+export const faqs = [
+  {
+    q: "Are you available for work?",
+    a: "Yes — I'm open to internships and entry-level roles where I can contribute real work and keep growing. Send the details through the contact form or email and I'll get back to you.",
+  },
+  {
+    q: "Where are you based?",
+    a: "I'm based in the Philippines. Message me to discuss on-site, hybrid, or remote arrangements.",
+  },
+  {
+    q: "What can you build?",
+    a: "Websites and web applications (React, JavaScript, Tailwind CSS), UI/UX designs and prototypes in Figma, and front ends for online stores. I also handle computer hardware, troubleshooting, and basic networking.",
+  },
+  {
+    q: "How do we start working together?",
+    a: "Send a message with what you need, your timeline, and any links or files. I'll reply by email so we can talk next steps.",
+  },
+  {
+    q: "Can I see your resume?",
+    a: "Yes — use the Download Resume button in the hero or the Resume section to get the one-page PDF.",
+  },
+];
 
 export const socials = {
   // Evidenced by your published project repos — update if it changes.

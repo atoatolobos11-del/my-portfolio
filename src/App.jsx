@@ -1,5 +1,6 @@
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Faq from "./components/Faq";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -8,6 +9,8 @@ import Marquee from "./components/Marquee";
 import Projects from "./components/Projects";
 import Resume from "./components/Resume";
 import Skills from "./components/Skills";
+import Testimonials from "./components/Testimonials";
+import WhatsAppButton from "./components/WhatsAppButton";
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
@@ -36,10 +39,13 @@ function App() {
         <Skills />
         <Projects />
         <Resume />
+        <Faq />
         <Contact />
+        <Testimonials />
       </main>
       <Footer />
       <JoystickTop />
+      <WhatsAppButton />
       <Analytics />
     </div>
   );
