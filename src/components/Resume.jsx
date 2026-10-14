@@ -1,34 +1,63 @@
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Award, Briefcase, Download, FileText, GraduationCap } from "lucide-react";
 import { certifications, education, experience, profile } from "../data/portfolio";
+import { riseChild, staggerParent } from "../motion/variants";
+import Magnetic from "./Magnetic";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 function Timeline({ items, type }) {
+  const reduce = useReducedMotion();
+  if (reduce) {
+    return (
+      <ol className="relative space-y-5 border-l-2 border-line pl-6">
+        {items.map((item) => (
+          <TimelineItem key={item.id} item={item} type={type} />
+        ))}
+      </ol>
+    );
+  }
   return (
-    <ol className="relative space-y-5 border-l-2 border-line pl-6">
+    <motion.ol
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={staggerParent(0.12)}
+      className="relative space-y-5 border-l-2 border-line pl-6"
+    >
       {items.map((item) => (
-        <li key={item.id} className="relative">
-          <span
-            aria-hidden="true"
-            className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-lime shadow-[0_0_12px_rgba(198,255,61,0.7)]"
-          />
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-lime">
-            {item.period}
-          </p>
-          <h4 className="mt-1 font-display text-lg font-bold text-cream">
-            {type === "edu" ? item.school : item.role}
-          </h4>
-          <p className="text-sm font-semibold text-vio">
-            {type === "edu" ? item.program : item.org}
-          </p>
-          {item.description && (
-            <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.description}</p>
-          )}
-        </li>
+        <motion.li key={item.id} variants={riseChild} className="relative">
+          <TimelineItem item={item} type={type} bare />
+        </motion.li>
       ))}
-    </ol>
+    </motion.ol>
   );
+}
+
+function TimelineItem({ item, type, bare = false }) {
+  const inner = (
+    <>
+      <span
+        aria-hidden="true"
+        className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-lime shadow-[0_0_12px_rgba(198,255,61,0.7)]"
+      />
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-lime">
+        {item.period}
+      </p>
+      <h4 className="mt-1 font-display text-lg font-bold text-cream">
+        {type === "edu" ? item.school : item.role}
+      </h4>
+      <p className="text-sm font-semibold text-vio">
+        {type === "edu" ? item.program : item.org}
+      </p>
+      {item.description && (
+        <p className="mt-1.5 text-sm leading-relaxed text-muted">{item.description}</p>
+      )}
+    </>
+  );
+  if (bare) return inner;
+  return <li className="relative">{inner}</li>;
 }
 
 export default function Resume() {
@@ -95,7 +124,7 @@ export default function Resume() {
                 </h3>
                 <ul className="mt-5 space-y-3">
                   {certifications.map((c) => (
-                    <li key={c.id} className="rounded-xl border border-line bg-ink p-4 text-sm text-cream">
+                    <li key={c.id} className="rounded-xl border border-line bg-ink p-4 text-sm text-cream transition-colors hover:border-lime/40">
                       <strong className="font-semibold">{c.title}</strong>
                       {c.issuer && <span className="text-muted"> — {c.issuer}</span>}
                       {c.year && <span className="ml-2 text-xs text-lime">{c.year}</span>}
@@ -106,8 +135,8 @@ export default function Resume() {
             )}
           </div>
 
-          <Reveal delay={0.1}>
-            <aside className="rounded-2xl border border-line bg-ink p-6 md:p-8 lg:sticky lg:top-28">
+          <Reveal delay={0.1} variant="scale">
+            <aside className="rounded-2xl border border-line bg-ink p-6 transition-colors duration-300 hover:border-lime/30 md:p-8 lg:sticky lg:top-28">
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-lime/15">
                 <FileText size={24} className="text-lime" />
               </span>
@@ -125,14 +154,16 @@ export default function Resume() {
                   and this button will start working automatically.
                 </p>
               ) : (
-                <a
-                  href={profile.resumePdfPath}
-                  download={profile.resumeFileName}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
-                >
-                  <Download size={18} />
-                  Download Resume
-                </a>
+                <Magnetic strength={0.18} className="mt-5 w-full">
+                  <a
+                    href={profile.resumePdfPath}
+                    download={profile.resumeFileName}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-bold uppercase tracking-[0.16em] text-ink transition-shadow duration-200 hover:shadow-[0_12px_40px_rgba(198,255,61,0.35)]"
+                  >
+                    <Download size={18} />
+                    Download Resume
+                  </a>
+                </Magnetic>
               )}
               <dl className="mt-6 space-y-3 border-t border-line pt-6 text-sm">
                 <div className="flex justify-between gap-4">

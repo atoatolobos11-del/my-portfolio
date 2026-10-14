@@ -1,6 +1,7 @@
 import { ArrowUp } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./icons";
 import { navLinks, profile, socials } from "../data/portfolio";
+import Reveal from "./Reveal";
+import { GithubIcon, LinkedinIcon } from "./icons";
 
 const YEAR = new Date().getFullYear();
 
@@ -9,6 +10,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-line bg-panel/60">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <Reveal variant="fade">
         <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
           <a href="#top" className="flex items-center gap-3" aria-label={`${profile.name} — back to top`}>
             <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-lg bg-lime font-display text-sm font-bold text-ink">
@@ -64,6 +66,7 @@ export default function Footer() {
             </button>
           </div>
         </div>
+        </Reveal>
 
         <div className="mt-10 border-t border-line pt-6 text-center md:text-left">
           <p className="text-sm text-muted">

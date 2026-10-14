@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Compass } from "lucide-react";
 import profileImage from "../assets/profile.jpg";
 import { profile } from "../data/portfolio";
@@ -5,6 +7,15 @@ import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 export default function About() {
+  const reduce = useReducedMotion();
+  const imgRef = useRef(null);
+
+  // Gentle scroll parallax inside the framed portrait.
+  const { scrollYProgress } = useScroll(
+    reduce ? undefined : { target: imgRef, offset: ["start end", "end start"] }
+  );
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
+
   return (
     <section id="about" aria-label="About me" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -19,18 +30,30 @@ export default function About() {
         />
 
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-          <Reveal className="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <Reveal variant="clip" className="relative mx-auto w-full max-w-sm lg:max-w-none">
             <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-vio/30 to-azure/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-panel">
-              <img
-                src={profileImage}
-                alt={`Portrait of ${profile.name}`}
-                className="aspect-[4/5] w-full object-cover"
-                style={{ objectPosition: "center 20%" }}
-                loading="lazy"
-                width={640}
-                height={800}
-              />
+            <div ref={imgRef} className="relative overflow-hidden rounded-[1.75rem] border border-line bg-panel">
+              {reduce ? (
+                <img
+                  src={profileImage}
+                  alt={`Portrait of ${profile.name}`}
+                  className="aspect-[4/5] w-full object-cover"
+                  style={{ objectPosition: "center 20%" }}
+                  loading="lazy"
+                  width={640}
+                  height={800}
+                />
+              ) : (
+                <motion.img
+                  src={profileImage}
+                  alt={`Portrait of ${profile.name}`}
+                  style={{ y: imgY, scale: 1.16, objectPosition: "center 20%" }}
+                  className="aspect-[4/5] w-full object-cover will-change-transform"
+                  loading="lazy"
+                  width={640}
+                  height={800}
+                />
+              )}
             </div>
           </Reveal>
 

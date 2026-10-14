@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { projectFilters, projects } from "../data/portfolio";
+import { EASE } from "../motion/variants";
 import ProjectCard from "./ProjectCard";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 export default function Projects() {
+  const reduce = useReducedMotion();
   const [filter, setFilter] = useState("all");
   const visible =
     filter === "all" ? projects : projects.filter((p) => p.category === filter);
@@ -41,13 +44,32 @@ export default function Projects() {
           ))}
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {visible.map((project, i) => (
-            <Reveal key={project.id} delay={Math.min(i * 0.06, 0.3)} className="h-full">
-              <ProjectCard project={project} index={i} />
-            </Reveal>
-          ))}
-        </div>
+        {reduce ? (
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {visible.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
+            ))}
+          </div>
+        ) : (
+          <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="popLayout">
+              {visible.map((project, i) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.94, y: 24 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.45, ease: EASE }}
+                  className="h-full"
+                >
+                  <ProjectCard project={project} index={i} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
       </div>
     </section>
   );
