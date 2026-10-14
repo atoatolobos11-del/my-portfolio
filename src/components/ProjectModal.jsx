@@ -70,10 +70,23 @@ export default function ProjectModal({ project, index, onClose }) {
             className="max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-line bg-panel"
           >
             <div className={`relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br ${visuals[(index ?? 0) % visuals.length]} sm:h-56`}>
-              <div aria-hidden="true" className="bg-blueprint absolute inset-0 opacity-70" />
-              <span aria-hidden="true" className="font-display text-7xl font-bold tracking-tight text-cream/20 sm:text-8xl">
-                {initials}
-              </span>
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={`${project.title} — live site preview`}
+                  loading="lazy"
+                  width={1000}
+                  height={625}
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              ) : (
+                <>
+                  <div aria-hidden="true" className="bg-blueprint absolute inset-0 opacity-70" />
+                  <span aria-hidden="true" className="font-display text-7xl font-bold tracking-tight text-cream/20 sm:text-8xl">
+                    {initials}
+                  </span>
+                </>
+              )}
               <span className="absolute left-5 top-5 rounded-full border border-line bg-ink/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-lime">
                 {project.categoryLabel}
               </span>

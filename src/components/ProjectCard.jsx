@@ -71,17 +71,30 @@ export default function ProjectCard({ project, index, onDetails }) {
       transition={{ duration: 0.3, ease: EASE }}
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel transition-[border-color,box-shadow] duration-300 hover:border-lime/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] will-change-transform"
     >
-      {/* Visual preview (generated — no broken images) */}
+      {/* Visual preview: real screenshot when available, generated monogram otherwise */}
       <div className={`relative aspect-video overflow-hidden bg-gradient-to-br ${visuals[index % visuals.length]}`}>
-        <div aria-hidden="true" className="bg-blueprint absolute inset-0 opacity-70" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            aria-hidden="true"
-            className="font-display text-6xl font-bold tracking-tight text-cream/15 transition-all duration-500 group-hover:scale-110 group-hover:text-cream/25 md:text-7xl"
-          >
-            {initials}
-          </span>
-        </div>
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`${project.title} — live site preview`}
+            loading="lazy"
+            width={1000}
+            height={625}
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          />
+        ) : (
+          <>
+            <div aria-hidden="true" className="bg-blueprint absolute inset-0 opacity-70" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span
+                aria-hidden="true"
+                className="font-display text-6xl font-bold tracking-tight text-cream/15 transition-all duration-500 group-hover:scale-110 group-hover:text-cream/25 md:text-7xl"
+              >
+                {initials}
+              </span>
+            </div>
+          </>
+        )}
         {/* Shine sweep on hover (desktop) */}
         <div
           aria-hidden="true"

@@ -62,6 +62,11 @@ export const skillGroups = [
 // 3–6 featured projects. Leave `live` / `source` as "" when
 // unavailable — the button is hidden automatically (no dead links).
 // `image` is optional; omit it to use the generated visual preview.
+import imgFrost from "../assets/project-frost.jpg";
+import imgRoots from "../assets/project-roots.jpg";
+import imgHomeline from "../assets/project-homeline.jpg";
+import imgPortfolio from "../assets/project-portfolio.jpg";
+
 export const projects = [
   {
     id: "frost-breakout",
@@ -73,6 +78,7 @@ export const projects = [
     tags: ["HTML5 Canvas", "JavaScript", "Web Audio", "CSS3"],
     live: "https://frost-breakout-omega.vercel.app/",
     source: "https://github.com/atoatolobos11-del/FROST",
+    image: imgFrost,
   },
   {
     id: "roots",
@@ -83,6 +89,7 @@ export const projects = [
     tags: ["Figma", "Web Design", "Branding"],
     live: "https://rootco-services-1r26.vercel.app",
     source: "",
+    image: imgRoots,
   },
   {
     id: "homeline",
@@ -93,6 +100,7 @@ export const projects = [
     tags: ["React", "Node.js", "Stripe"],
     live: "https://homeline-services-gvwx.vercel.app",
     source: "",
+    image: imgHomeline,
   },
   {
     id: "portfolio",
@@ -103,6 +111,7 @@ export const projects = [
     tags: ["Figma", "UI/UX", "Portfolio"],
     live: "https://my-portfolio-jnd5.vercel.app",
     source: "",
+    image: imgPortfolio,
   },
   {
     id: "smartkids",
