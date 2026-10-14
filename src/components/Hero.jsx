@@ -64,7 +64,7 @@ export default function Hero() {
       ref={sectionRef}
       onMouseMove={onMouseMove}
       aria-label="Introduction"
-      className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40"
+      className="relative overflow-hidden pb-12 pt-24 md:pb-16 md:pt-32"
     >
       {/* Ambient color + cursor glow — decorative only */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -81,7 +81,7 @@ export default function Hero() {
         )}
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:px-8">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:px-8">
         <div>
           <motion.p
             {...load(0.35)}
@@ -94,7 +94,7 @@ export default function Hero() {
             {profile.seeking}
           </motion.p>
 
-          <h1 className="mt-6 font-display text-5xl font-bold leading-[0.98] tracking-tight text-cream sm:text-6xl md:text-7xl xl:text-8xl">
+          <h1 className="mt-5 font-display text-5xl font-bold leading-[0.98] tracking-tight text-cream sm:text-6xl md:text-7xl xl:text-8xl">
             <SplitLines
               mode="load"
               delay={0.45}
@@ -110,7 +110,7 @@ export default function Hero() {
             />
           </h1>
 
-          <motion.p {...load(0.95)} className="mt-5 font-display text-lg font-medium text-cream md:text-xl">
+          <motion.p {...load(0.95)} className="mt-4 font-display text-lg font-medium text-cream md:text-xl">
             {profile.title}
           </motion.p>
 
@@ -118,7 +118,7 @@ export default function Hero() {
             {profile.intro}
           </motion.p>
 
-          <motion.div {...load(1.1)} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <motion.div {...load(1.1)} className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Magnetic>
               <a
                 href="#projects"
@@ -141,7 +141,7 @@ export default function Hero() {
             </Magnetic>
           </motion.div>
 
-          <motion.div {...load(1.25)} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+          <motion.div {...load(1.25)} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
             <span className="inline-flex items-center gap-2">
               <MapPin size={16} className="text-lime" />
               {profile.location}
