@@ -110,7 +110,8 @@ section("Experience");
 const jobs = [
   ["2026", "IT Intern & Developer — PANDR IT",
     "Gaining hands-on experience with web development and UI/UX design while contributing to real client projects."],
-  ["2024", "Student Assistant — CCDI", ""],
+  ["2024", "Student Assistant — CCDI",
+    "Supported school events and programs while handling mixed general duties assigned by the office."],
 ];
 for (const [period, role, desc] of jobs) {
   doc.fillColor(MUTED).font("Helvetica-Bold").fontSize(9.5);

@@ -152,6 +152,8 @@ export const experience = [
     period: "2024",
     role: "Student Assistant",
     org: "CCDI",
+    description:
+      "Supported school events and programs while handling mixed general duties assigned by the office.",
   },
 ];
 
