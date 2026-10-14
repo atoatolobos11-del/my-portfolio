@@ -102,7 +102,7 @@ export default function Hero() {
               lines={[
                 <>Hi, I&rsquo;m</>,
                 <span key="n" className="whitespace-nowrap text-lime text-4xl sm:text-6xl md:text-7xl xl:text-8xl">{profile.name}.</span>,
-                <span key="d">
+                <span key="d" className="text-4xl sm:text-5xl md:text-6xl">
                   <span className="text-outline">Developer</span>
                   <span aria-hidden="true" className="text-vio">.</span>
                 </span>,
