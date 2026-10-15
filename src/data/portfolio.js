@@ -101,7 +101,7 @@ export const projects = [
     categoryLabel: "Web Development",
     description: "Full-featured e-commerce platform with a modern shopping experience.",
     tags: ["React", "Node.js", "Stripe"],
-    live: "https://homeline-services-gvwx.vercel.app",
+    live: "https://homeline-api.onrender.com",
     source: "",
     image: imgHomeline,
   },
